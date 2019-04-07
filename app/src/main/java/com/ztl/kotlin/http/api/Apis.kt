@@ -6,6 +6,7 @@ import com.ztl.kotlin.utils.HTTPConstant
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface Apis {
@@ -26,4 +27,6 @@ interface Apis {
                  @Field("password") pwd: String,
                  @Field("repassword") repwd: String): Observable<HttpResult<LoginData>>
 
+    @GET(value = HTTPConstant.LOGOUT_PATH)
+    fun logout(): Observable<HttpResult<Any>>
 }
