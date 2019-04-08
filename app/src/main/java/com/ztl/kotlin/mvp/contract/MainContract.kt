@@ -9,14 +9,14 @@ import io.reactivex.Observable
 interface MainContract {
 
     interface Model: IMode {
-        fun logout(): Observable<HttpResult<Any>>
+        fun logout() : Observable<HttpResult<Any>>
     }
 
     interface View: IView {
-        fun onLogout(isSuccess: Boolean)
+        fun onLogout(success: Boolean)
     }
 
-    interface Presenser: IPresenter<View> {
+    interface Presenter: IPresenter<View> {
         fun logout()
     }
 }
