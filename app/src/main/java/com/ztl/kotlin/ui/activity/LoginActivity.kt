@@ -80,6 +80,10 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
 
         EventBus.getDefault().post(LoginEvent(true))
 
+        start<MainActivity>()
+        finish()
+        overridePendingTransition(0, 0)
+
     }
 
     override fun onLoginFailed(errMsg: String) {

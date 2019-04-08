@@ -11,4 +11,7 @@ object HTTPConstant {
 
     // 注册
     const val REGISTER_PATH = "user/register"
+
+    // 登出
+    const val LOGOUT_PATH = "user/logout/json"
 }
