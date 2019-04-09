@@ -20,4 +20,15 @@
     <string name="menu_night">夜间模式</string>
     <string name="menu_setting">设置</string>
     <string name="menu_logout">登出</string>
+    
+    <!-- bottom navigation -->
+    <string name="bottom_navi_home">首页</string>
+    <string name="bottom_navi_knowledge">知识体系</string>
+    <string name="bottom_navi_subscription">公众号</string>
+    <string name="bottom_navi_guide">导航</string>
+    <string name="bottom_navi_project">项目</string>
+    
+    <!-- behaview -->
+    <string name="floating_action_behavior">com.ztl.kotlin.widget.behavior.FloatButtonBehavior</string>
+    <string name="bottom_navigation_behavior">com.ztl.kotlin.widget.behavior.BottomNaviBehavior</string>
 </resources>
