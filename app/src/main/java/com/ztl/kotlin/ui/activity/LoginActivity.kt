@@ -79,6 +79,9 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
         showMessage("欢迎回来，${user}")
 
         EventBus.getDefault().post(LoginEvent(true))
+        start<MainActivity>()
+        finish()
+        overridePendingTransition(0, 0)
 
     }
 
