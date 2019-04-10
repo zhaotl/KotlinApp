@@ -7,4 +7,10 @@ object Constant {
     const val CONST_LOGINTOKEN_KEY = "login_token"
     const val CONST_PASSWORD = "password"
 
+    const val CONST_FRAGMENT_HOME = 0x1
+    const val CONST_FRAGMENT_KNOWLEDGE = 0x2
+    const val CONST_FRAGMENT_SUBSCRIPTION = 0x03
+    const val CONST_FRAGMENT_GUIDE = 0x04
+    const val CONST_FRAGMENT_PROJECT = 0x05
+
 }

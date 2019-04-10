@@ -21,6 +21,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
     private var isLogin: Boolean by Preferences(Constant.CONST_ISLOGIN_KEY, false)
 
     private var nav_username: TextView? = null
+    private var fragment_index: Int = Constant.CONST_FRAGMENT_HOME
 
     override fun enableEventBus(): Boolean = false
 
@@ -51,6 +52,10 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
         // slide navigation view
         initNavigation()
+
+        showFragment(fragment_index)
+
+
     }
 
     private fun initToolBar() = main_tool_bar.run {
@@ -92,6 +97,16 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
             }
 
         }
+    }
+
+    private fun initFloatAction() {
+        main_float_action.setOnClickListener{
+
+        }
+    }
+
+    private fun showFragment(index: Int) {
+
     }
 
     private val bottomNaviSelectedListner =
