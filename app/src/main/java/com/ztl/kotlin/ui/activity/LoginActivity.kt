@@ -19,6 +19,8 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
 
     private var user: String by Preferences(Constant.CONST_USERNAME_KEY, "")
     private var token: String by Preferences(Constant.CONST_LOGINTOKEN_KEY, "")
+    private var isLogin: Boolean by Preferences(Constant.CONST_ISLOGIN_KEY, false)
+    private var pwd: String by Preferences(Constant.CONST_PASSWORD, "")
 
     override fun layouRes(): Int = R.layout.activity_login
 
@@ -29,6 +31,7 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
 
         KLogger.d("initview username = ${user}")
         username.setText(user)
+        password.setText(pwd)
         login_button.setOnClickListener(onClickListener)
         register_text.setOnClickListener(onClickListener)
     }
@@ -75,8 +78,10 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
         KLogger.d("token = ${data.token}")
         user = data.username
         token = data.token
+        isLogin = true
+        pwd = password.text.toString()
 
-        showMessage("欢迎回来，${user}")
+        showMessage("欢迎回来，$user")
 
         EventBus.getDefault().post(LoginEvent(true))
         start<MainActivity>()
@@ -88,5 +93,6 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
     override fun onLoginFailed(errMsg: String) {
         KLogger.e("login failed: ${errMsg}")
         username.error = errMsg
+        isLogin = false
     }
 }

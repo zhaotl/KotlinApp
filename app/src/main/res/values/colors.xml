@@ -8,4 +8,5 @@
     <color name="transparent_75">#ba000000</color>
 
     <color name="bottom_navi_selected">#1296db</color>
+    <color name="textColorPrimary">#616161</color>
 </resources>

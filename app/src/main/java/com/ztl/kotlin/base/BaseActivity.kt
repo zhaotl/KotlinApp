@@ -3,10 +3,11 @@ package com.ztl.kotlin.base
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.ztl.kotlin.app.App
 import org.greenrobot.eventbus.EventBus
 
-abstract class BaseActivity : Activity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     protected abstract fun layouRes(): Int
     protected abstract fun initView()

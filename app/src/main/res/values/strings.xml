@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Hello Kotlin</string>
+    <string name="app_name">KotlinApp</string>
+
+    <string name="navigation_drawer_open">打开drawer</string>
+    <string name="navigation_drawer_close">关闭drawer</string>
 
     <string name="title_login">登 陆</string>
     <string name="username_login">手机号/用户名</string>

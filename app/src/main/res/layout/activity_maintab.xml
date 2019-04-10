@@ -24,8 +24,8 @@
                     style="@style/Widget.Design.BottomNavigationView"
                     android:background="@color/white"
                     android:layout_gravity="bottom"
-                    app:itemIconTint="@color/bottom_navi_selected"
-                    app:itemTextColor="@color/bottom_navi_selected"
+                    app:itemIconTint="@drawable/nav_item_selector"
+                    app:itemTextColor="@drawable/nav_item_selector"
                     app:layout_behavior="@string/bottom_navigation_behavior"
                     app:menu="@menu/bottom_navi_menu"
             />
