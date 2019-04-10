@@ -26,7 +26,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
     override fun createPresenter(): MainContract.Presenter = MainPresenter()
 
-    override fun layouRes(): Int = R.layout.activity_maintab
+    override fun layoutRes(): Int = R.layout.activity_maintab
 
     override fun onLogout(success: Boolean) {
         username = ""

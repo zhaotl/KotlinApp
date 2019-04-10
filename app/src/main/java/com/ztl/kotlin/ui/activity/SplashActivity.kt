@@ -14,7 +14,7 @@ class SplashActivity: BaseActivity() {
     private val TAG = "SplashActivity"
     private var alphaAnimation: AlphaAnimation? = null
 
-    override fun layouRes(): Int = R.layout.activity_splash
+    override fun layoutRes(): Int = R.layout.activity_splash
 
     override fun enableEventBus(): Boolean = false
 

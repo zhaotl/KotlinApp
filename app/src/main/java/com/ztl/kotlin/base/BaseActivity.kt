@@ -9,7 +9,7 @@ import org.greenrobot.eventbus.EventBus
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected abstract fun layouRes(): Int
+    protected abstract fun layoutRes(): Int
     protected abstract fun initView()
 
     // 被继承必须 是open
@@ -18,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(layouRes())
+        setContentView(layoutRes())
 
         initView()
 

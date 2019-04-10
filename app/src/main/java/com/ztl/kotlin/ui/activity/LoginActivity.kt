@@ -22,7 +22,7 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
     private var isLogin: Boolean by Preferences(Constant.CONST_ISLOGIN_KEY, false)
     private var pwd: String by Preferences(Constant.CONST_PASSWORD, "")
 
-    override fun layouRes(): Int = R.layout.activity_login
+    override fun layoutRes(): Int = R.layout.activity_login
 
     override fun enableEventBus(): Boolean = false
 

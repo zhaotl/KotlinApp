@@ -17,7 +17,7 @@ class RegisterActivity: BaseMvpActivity<RegisterContract.View, RegisterContract.
 
     override fun createPresenter(): RegisterContract.Presenter = RegisterPresenter()
 
-    override fun layouRes(): Int = R.layout.activity_register
+    override fun layoutRes(): Int = R.layout.activity_register
 
     override fun enableEventBus(): Boolean = false
 
