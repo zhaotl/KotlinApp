@@ -1,20 +1,24 @@
 package com.ztl.kotlin.mvp.contract
 
-import com.ztl.kotlin.base.mvp.IMode
-import com.ztl.kotlin.base.mvp.IPresenter
-import com.ztl.kotlin.base.mvp.IView
+import com.ztl.kotlin.mvp.model.bean.ArticleList
+import com.ztl.kotlin.mvp.model.bean.Banner
 
 interface HomeContract {
 
-    interface Model: IMode {
-
+    interface Model: FavoriteContract.Model {
+        fun getTopArticles()
+        fun getNormalArticles()
+        fun getBanner()
     }
 
-    interface View: IView {
-
+    interface View: FavoriteContract.View {
+        fun showBanner(banners: List<Banner>)
+        fun showTopArticles(articles: ArticleList)
+        fun scrollToTop()
     }
 
-    interface Presenter: IPresenter<View> {
-
+    interface Presenter: FavoriteContract.Presenter {
+        fun getBanner()
+        fun getArticles()
     }
 }
