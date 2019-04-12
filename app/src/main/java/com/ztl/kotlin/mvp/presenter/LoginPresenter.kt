@@ -15,7 +15,7 @@ class LoginPresenter: BasePresenter<LoginContract.Model, LoginContract.View>(), 
     override fun login(username: String, password: String) {
         KLogger.d("Presenser Login")
 
-        mMode?.login(username, password)?.result(mMode, mView, true, {
+        mMode?.login(username, password)?.result(mMode, mView, {
             mView?.onLoginSuccess(it.data)
         }, {
             mView?.onLoginFailed(it)

@@ -10,7 +10,7 @@ class RegisterPresenter: BasePresenter<RegisterContract.Model, RegisterContract.
     override fun createMode(): RegisterContract.Model? = RegisterModel()
 
     override fun register(username: String, pwd: String, repeatPwd: String) {
-        mMode?.register(username, pwd, repeatPwd)?.result(mMode, mView, true, {
+        mMode?.register(username, pwd, repeatPwd)?.result(mMode, mView, {
             mView?.onRegisterSuccess(it.data)
         }, {
             mView?.showError(it)

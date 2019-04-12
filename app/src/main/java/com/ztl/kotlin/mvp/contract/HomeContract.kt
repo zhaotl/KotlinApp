@@ -1,14 +1,17 @@
 package com.ztl.kotlin.mvp.contract
 
+import com.ztl.kotlin.mvp.model.bean.Article
 import com.ztl.kotlin.mvp.model.bean.ArticleList
 import com.ztl.kotlin.mvp.model.bean.Banner
+import com.ztl.kotlin.mvp.model.bean.HttpResult
+import io.reactivex.Observable
 
 interface HomeContract {
 
     interface Model: FavoriteContract.Model {
-        fun getTopArticles()
-        fun getNormalArticles()
-        fun getBanner()
+        fun getTopArticles(): Observable<HttpResult<MutableList<Article>>>
+        fun getNormalArticles(index: Int): Observable<HttpResult<ArticleList>>
+        fun getBanner(): Observable<HttpResult<List<Banner>>>
     }
 
     interface View: FavoriteContract.View {
@@ -17,8 +20,9 @@ interface HomeContract {
         fun scrollToTop()
     }
 
-    interface Presenter: FavoriteContract.Presenter {
+    interface Presenter: FavoriteContract.Presenter<View> {
         fun getBanner()
-        fun getArticles()
+        fun getArticles(index: Int)
+        fun getHomeData()
     }
 }

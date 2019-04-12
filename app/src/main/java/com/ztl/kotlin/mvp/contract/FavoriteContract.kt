@@ -9,8 +9,8 @@ import io.reactivex.Observable
 interface FavoriteContract {
 
     interface Model: IMode {
-        fun addFavorite(): Observable<HttpResult<Any>>
-        fun delFavorite(): Observable<HttpResult<Any>>
+        fun addFavorite(id: Int): Observable<HttpResult<Any>>
+        fun delFavorite(id: Int): Observable<HttpResult<Any>>
     }
 
     interface View: IView {
@@ -18,8 +18,8 @@ interface FavoriteContract {
         fun onDelFavorite(success:Boolean)
     }
 
-    interface Presenter: IPresenter<View> {
-        fun addFavorite()
-        fun delFavorite()
+    interface Presenter<in V: View>: IPresenter<V> {
+        fun addFavorite(id: Int)
+        fun delFavorite(id: Int)
     }
 }

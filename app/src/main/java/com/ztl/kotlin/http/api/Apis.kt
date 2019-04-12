@@ -1,13 +1,9 @@
 package com.ztl.kotlin.http.api
 
-import com.ztl.kotlin.mvp.model.bean.HttpResult
-import com.ztl.kotlin.mvp.model.bean.LoginData
+import com.ztl.kotlin.mvp.model.bean.*
 import com.ztl.kotlin.utils.HTTPConstant
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Apis {
 
@@ -27,6 +23,37 @@ interface Apis {
                  @Field("password") pwd: String,
                  @Field("repassword") repwd: String): Observable<HttpResult<LoginData>>
 
+    // 登出
     @GET(value = HTTPConstant.LOGOUT_PATH)
     fun logout(): Observable<HttpResult<Any>>
+
+    // 收藏站内文章
+    @POST(value = HTTPConstant.ADD_INSITE_FAVORITE)
+    fun addInSiteFavorite(@Path("id") id: Int): Observable<HttpResult<Any>>
+
+    // 收藏站外文章
+    @POST(value = HTTPConstant.ADD_OUTSITE_FAVORITE)
+    @FormUrlEncoded
+    fun addOutSiteFavorite(@Field("title") title: String ,
+                           @Field("author") author: String,
+                           @Field("link") link: String): Observable<HttpResult<Any>>
+
+    // 取消站内收藏
+    @POST(value = HTTPConstant.DEL_FAVORITE_ARTICLELIST)
+    fun deleteFromArticles(@Path("id") id: Int):Observable<HttpResult<Any>>
+
+    // 取消收藏列表中的收藏
+    @POST(value = HTTPConstant.DEL_FAVORITE_MY_FAVORITES)
+    fun deleteFromFavorites(@Path("id") id: Int,
+                            @Field("originId") originId: Int): Observable<HttpResult<Any>>
+
+    // 首页的Banner
+    @GET(value = HTTPConstant.HOME_BANNER)
+    fun getHomeBanner(): Observable<HttpResult<List<Banner>>>
+
+    @GET(value = HTTPConstant.HOME_TOP_ARTICLES)
+    fun getTopArticles(): Observable<HttpResult<MutableList<Article>>>
+
+    @GET(value = HTTPConstant.HOME_ARTICLES_LIST)
+    fun getHomeArticles(@Path("index") index: Int): Observable<HttpResult<ArticleList>>
 }

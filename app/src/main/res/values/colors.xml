@@ -5,8 +5,21 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="red">#f44336</color>
+    <color name="light_blue">#ff33b5e5</color>
     <color name="transparent_75">#ba000000</color>
 
     <color name="bottom_navi_selected">#1296db</color>
     <color name="textColorPrimary">#616161</color>
+
+    <!-- item -->
+    <color name="common_color">#19191B</color>
+    <color name="item_title">#19191B</color>
+    <color name="item_author">#616161</color>
+    <color name="item_desc">#757575</color>
+    <color name="item_time">#757575</color>
+    <color name="item_date">#757575</color>
+    <color name="item_chapter">#757575</color>
+    <color name="item_tag_tv">#ffFFFFFF</color>
+    <color name="item_nav_color_tv">#19191B</color>
 </resources>

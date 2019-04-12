@@ -3,12 +3,14 @@ package com.ztl.kotlin.ui.activity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBarDrawerToggle
 import android.widget.TextView
 import com.ztl.kotlin.R
 import com.ztl.kotlin.base.BaseMvpActivity
 import com.ztl.kotlin.mvp.contract.MainContract
 import com.ztl.kotlin.mvp.presenter.MainPresenter
+import com.ztl.kotlin.ui.fragment.HomeFragment
 import com.ztl.kotlin.utils.Constant
 import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.utils.Preferences
@@ -22,6 +24,8 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
     private var nav_username: TextView? = null
     private var fragment_index: Int = Constant.CONST_FRAGMENT_HOME
+
+    private var homeFragment: HomeFragment? = null
 
     override fun enableEventBus(): Boolean = false
 
@@ -55,7 +59,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
         showFragment(fragment_index)
 
-
+        initFloatAction()
     }
 
     private fun initToolBar() = main_tool_bar.run {
@@ -69,7 +73,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
     }
 
     private fun initDrawerLayout() = drawer_layout.run {
-        val mToggle = ActionBarDrawerToggle(this@MainActivity, this, main_tool_bar, 0, 0)
+        val mToggle = ActionBarDrawerToggle(this@MainActivity, this, main_tool_bar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         addDrawerListener(mToggle)
         mToggle.syncState()
     }
@@ -101,11 +105,37 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
     private fun initFloatAction() {
         main_float_action.setOnClickListener{
-
+            when(fragment_index) {
+                Constant.CONST_FRAGMENT_HOME -> {
+                    homeFragment?.scrollToTop()
+                }
+            }
         }
     }
 
     private fun showFragment(index: Int) {
+        val transation = supportFragmentManager.beginTransaction()
+        hideFragment(transation)
+        fragment_index = index
+
+        when(index) {
+            Constant.CONST_FRAGMENT_HOME -> {
+                if (homeFragment == null) {
+                    homeFragment = HomeFragment()
+                    transation.add(R.id.main_container_layout, homeFragment!!, "home")
+                } else {
+                    homeFragment?.let {
+                        transation.show(it)
+                    }
+                }
+            }
+        }
+
+        transation.commit()
+    }
+
+    private fun hideFragment(transation: FragmentTransaction) {
+        homeFragment?.let { transation.hide(it) }
 
     }
 

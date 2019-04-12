@@ -10,7 +10,7 @@ class MainPresenter: BasePresenter<MainContract.Model, MainContract.View>(), Mai
     override fun createMode(): MainContract.Model? = MainModel()
 
     override fun logout() {
-        mMode?.logout()?.result(mMode, mView, false, {
+        mMode?.logout()?.result(mMode, mView, {
             mView?.onLogout(true)
         }, {
             mView?.onLogout(false)

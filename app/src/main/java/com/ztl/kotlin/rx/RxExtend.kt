@@ -12,9 +12,9 @@ import io.reactivex.disposables.Disposable
 fun <T: BaseBean> Observable<T>.result(
     mode: IMode?,
     view: IView?,
-    isShowLoading: Boolean = true,
     onSuccess: (T) -> Unit,
-    onFailed: (String) -> Unit
+    onFailed: (String) -> Unit = {},
+    isShowLoading: Boolean = true
 ) {
     this.compose(IoMainScheduler())
         .subscribe(object: Observer<T> {
