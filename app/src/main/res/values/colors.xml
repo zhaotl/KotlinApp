@@ -22,4 +22,6 @@
     <color name="item_chapter">#757575</color>
     <color name="item_tag_tv">#ffFFFFFF</color>
     <color name="item_nav_color_tv">#19191B</color>
+
+    <color name="gray_300">#E0E0E0</color>
 </resources>
