@@ -10,7 +10,9 @@ import com.ztl.kotlin.R
 
 object GlideLoader {
 
-    fun load(context: Context, url: String, imageView: ImageView?) {
+    fun load(context: Context?, url: String?, imageView: ImageView?) {
+        context ?: return
+
         imageView?.apply {
             Glide.with(context).clear(imageView)
             val options = RequestOptions()

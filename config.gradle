@@ -47,7 +47,8 @@ ext {
             "eventbus"              : 'org.greenrobot:eventbus:3.1.1',
             "logger"                : 'com.orhanobut:logger:2.2.0',
             "brvh"                  : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46',
-            "glide"                 : 'com.github.bumptech.glide:glide:4.9.0'
+            "glide"                 : 'com.github.bumptech.glide:glide:4.9.0',
+            "banner"                : 'cn.bingoogolapple:bga-banner:2.2.6@aar'
     ]
 
     supportLibs = supportDepends.values()
