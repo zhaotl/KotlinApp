@@ -26,7 +26,7 @@
                     android:layout_gravity="bottom"
                     app:itemIconTint="@drawable/nav_item_selector"
                     app:itemTextColor="@drawable/nav_item_selector"
-                    app:layout_behavior="@string/bottom_navigation_behavior"
+                    app:layout_behavior="com.ztl.kotlin.widget.behavior.BottomNaviBehavior"
                     app:menu="@menu/bottom_navi_menu"
             />
 
@@ -38,7 +38,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="60dp"
                     android:layout_gravity="bottom|right"
-                    app:layout_behavior="@string/floating_action_behavior"
+                    app:layout_behavior="com.ztl.kotlin.widget.behavior.FloatButtonBehavior"
                     app:srcCompat="@drawable/ic_arraw_up_1"
             />
 

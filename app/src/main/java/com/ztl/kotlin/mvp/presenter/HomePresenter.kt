@@ -21,7 +21,7 @@ class HomePresenter: FavoritePresenter<HomeContract.Model, HomeContract.View>(),
 
     override fun getArticles(index: Int) {
         mMode?.getNormalArticles(index)?.result(mMode, mView, {
-            mView?.showTopArticles(it.data)
+            mView?.showArticles(it.data)
         })
     }
 
@@ -42,7 +42,7 @@ class HomePresenter: FavoritePresenter<HomeContract.Model, HomeContract.View>(),
 
             })
             .result(mMode, mView, {
-                mView?.showTopArticles(it.data)
+                mView?.showArticles(it.data)
             })
 
     }

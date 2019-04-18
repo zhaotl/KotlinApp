@@ -36,7 +36,4 @@
     <string name="article_new">新</string>
 
     
-    <!-- behaview -->
-    <string name="floating_action_behavior">com.ztl.kotlin.widget.behavior.FloatButtonBehavior</string>
-    <string name="bottom_navigation_behavior">com.ztl.kotlin.widget.behavior.BottomNaviBehavior</string>
 </resources>

@@ -19,7 +19,7 @@
                 android:layout_height="match_parent"
                 android:scrollbarSize="8dp"
                 android:scrollbars="vertical"
-                tools:listitem=""
+                tools:listitem="@layout/article_item"
         >
         </android.support.v7.widget.RecyclerView>
 

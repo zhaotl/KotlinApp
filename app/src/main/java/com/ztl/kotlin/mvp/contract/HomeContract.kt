@@ -16,7 +16,7 @@ interface HomeContract {
 
     interface View: FavoriteContract.View {
         fun showBanner(banners: List<Banner>)
-        fun showTopArticles(articles: ArticleList)
+        fun showArticles(articles: ArticleList)
         fun scrollToTop()
     }
 

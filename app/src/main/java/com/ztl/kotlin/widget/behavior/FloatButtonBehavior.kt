@@ -1,5 +1,6 @@
 package com.ztl.kotlin.widget.behavior
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.FloatingActionButton
@@ -23,6 +24,7 @@ class FloatButtonBehavior: FloatingActionButton.Behavior {
                 super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, axes, type)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onNestedScroll(
         coordinatorLayout: CoordinatorLayout,
         child: FloatingActionButton,
@@ -36,7 +38,8 @@ class FloatButtonBehavior: FloatingActionButton.Behavior {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type)
 
         if (dyConsumed > 0 && child.visibility == View.VISIBLE) {
-            child.hide()
+//            child.hide() // hide 之后，显示不出来
+            child.visibility = View.INVISIBLE
         } else if(dyConsumed < 0 && child.visibility != View.VISIBLE) {
             child.show()
         }
