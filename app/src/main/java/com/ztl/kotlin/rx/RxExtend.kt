@@ -14,7 +14,7 @@ fun <T: BaseBean> Observable<T>.result(
     view: IView?,
     onSuccess: (T) -> Unit,
     onFailed: (String) -> Unit = {},
-    isShowLoading: Boolean = true
+    isShowLoading: Boolean = false
 ) {
     this.compose(IoMainScheduler())
         .subscribe(object: Observer<T> {

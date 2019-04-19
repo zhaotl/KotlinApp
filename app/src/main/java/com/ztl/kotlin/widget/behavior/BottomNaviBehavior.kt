@@ -6,7 +6,6 @@ import android.support.design.widget.CoordinatorLayout
 import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.view.View
-import com.ztl.kotlin.utils.KLogger
 
 class BottomNaviBehavior : CoordinatorLayout.Behavior<View> {
 
@@ -45,8 +44,7 @@ class BottomNaviBehavior : CoordinatorLayout.Behavior<View> {
                     start()
                 }
             }
-
-            KLogger.d("dy > 0")
+            emptyRet()
         }
         dy < 0 -> { // 向下滑动 显示
             if (inAnimator == null) {
@@ -59,12 +57,15 @@ class BottomNaviBehavior : CoordinatorLayout.Behavior<View> {
                     start()
                 }
             }
-
-            KLogger.d("dy < 0")
+            emptyRet()
         }
         else -> {
-            KLogger.d("dy == 0")
+            emptyRet()
         }
+
     }
 
+    private fun emptyRet() {
+
+    }
 }

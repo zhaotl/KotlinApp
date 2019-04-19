@@ -29,7 +29,7 @@ data class Article(
     @Json(name = "author") val author: String,
     @Json(name = "chapterId") val chapterId: Int,
     @Json(name = "chapterName") val chapterName: String,
-    @Json(name = "collect") val collect: Boolean,
+    @Json(name = "collect") var collect: Boolean,
     @Json(name = "courseId") val courseId: Int,
     @Json(name = "desc") val desc: String,
     @Json(name = "envelopePic") val envelopePic: String,

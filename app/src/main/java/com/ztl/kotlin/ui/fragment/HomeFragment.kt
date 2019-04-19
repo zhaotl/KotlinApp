@@ -1,22 +1,28 @@
 package com.ztl.kotlin.ui.fragment
 
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ztl.kotlin.R
+import com.ztl.kotlin.base.BaseActivity
 import com.ztl.kotlin.base.BaseMvpFragment
 import com.ztl.kotlin.mvp.contract.HomeContract
 import com.ztl.kotlin.mvp.model.bean.Article
 import com.ztl.kotlin.mvp.model.bean.ArticleList
 import com.ztl.kotlin.mvp.model.bean.Banner
 import com.ztl.kotlin.mvp.presenter.HomePresenter
+import com.ztl.kotlin.ui.activity.LoginActivity
+import com.ztl.kotlin.ui.activity.MainActivity
 import com.ztl.kotlin.ui.adapter.HomeAdapter
 import com.ztl.kotlin.utils.GlideLoader
+import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.widget.decoration.CommonDecoration
+import io.reactivex.Observable
+import kotlinx.android.synthetic.main.banner_item.*
 import kotlinx.android.synthetic.main.fragment_home_layout.*
 
 class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(), HomeContract.View {
@@ -51,6 +57,14 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
     override fun initView(view: View) {
         super.initView(view)
 
+        fragment_swipe_layout?.run {
+            setOnRefreshListener {
+                isRefresh = true
+                homeAdapter.setEnableLoadMore(false)
+                mPresenter?.getHomeData()
+            }
+        }
+
         fragment_recyclerview.run {
             activity?.let {
                 // 默认自定义的divider
@@ -67,15 +81,41 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
             itemAnimator = DefaultItemAnimator()
         }
 
+        bannerView = layoutInflater.inflate(R.layout.banner_item, null)
+        bgabanner?.setDelegate {
+            banner, itemView, model, position ->
+                KLogger.d("banner clicked on position $position")
+        }
 
         homeAdapter.run {
             bindToRecyclerView(fragment_recyclerview)
+            addHeaderView(bannerView)
 
+            setOnLoadMoreListener(requestMoreListener, fragment_recyclerview)
+            onItemClickListener = recyclerViewItemClick
+            onItemChildClickListener = childItemClick
         }
 
     }
 
-    override fun showBanner(banners: List<Banner>) {
+    override fun showBanner(lists: List<Banner>) {
+        banners = lists as ArrayList<Banner>
+        val bannerPahs = ArrayList<String>()
+        val bannerTitles = ArrayList<String>()
+
+        // RXjava
+        Observable.fromIterable(lists)
+            .subscribe { banner ->
+                bannerPahs.add(banner.imagePath)
+                bannerTitles.add(banner.title)
+            }
+
+        bgabanner?.run {
+            setAutoPlayAble(bannerPahs.size > 1)
+            setData(bannerPahs, bannerTitles)
+            setAdapter(bannerAdaper)
+        }
+
     }
 
     override fun showArticles(articles: ArticleList) {
@@ -113,5 +153,62 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
 
     override fun onDelFavorite(success: Boolean) {
 
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+
+        fragment_swipe_layout?.isRefreshing = false
+        if (isRefresh) {
+            homeAdapter.run {
+                setEnableLoadMore(true)
+            }
+        }
+    }
+
+    private val requestMoreListener = BaseQuickAdapter.RequestLoadMoreListener {
+        isRefresh = false
+        fragment_swipe_layout.isRefreshing = false
+
+        val index = homeAdapter.data.size / 20
+        mPresenter?.getArticles(index)
+    }
+
+    private val recyclerViewItemClick = BaseQuickAdapter.OnItemClickListener {
+        adapter, view, position ->
+        if (articles.size > 0) {
+            val article = articles[position]
+            KLogger.d("article url = ${article.link}")
+            KLogger.d("article title = ${article.title}")
+            KLogger.d("article id = ${article.id}")
+        }
+    }
+
+    private val childItemClick = BaseQuickAdapter.OnItemChildClickListener {
+        adapter, view, position ->
+
+        if (articles.size >= 0) {
+            val article = articles[position]
+            when(view.id) {
+                R.id.fragment_iv_like -> {
+                    if (isLogin) {
+                        val collect = article.collect
+                        article.collect = !collect
+                        homeAdapter.setData(position, article)
+                        if (collect) {
+                            mPresenter?.delFavorite(article.id)
+                        } else {
+                            mPresenter?.addFavorite(article.id)
+                        }
+                    } else {
+                        with(activity as MainActivity) {
+                            start<LoginActivity>()
+                            showMessage("请先登录")
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
