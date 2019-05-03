@@ -19,7 +19,6 @@ class LoginActivity : BaseMvpActivity<LoginContract.View, LoginContract.Presente
 
     private var user: String by Preferences(Constant.CONST_USERNAME_KEY, "")
     private var token: String by Preferences(Constant.CONST_LOGINTOKEN_KEY, "")
-    private var isLogin: Boolean by Preferences(Constant.CONST_ISLOGIN_KEY, false)
     private var pwd: String by Preferences(Constant.CONST_PASSWORD, "")
 
     override fun layoutRes(): Int = R.layout.activity_login

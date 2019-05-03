@@ -5,9 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.ztl.kotlin.app.App
+import com.ztl.kotlin.utils.Constant
+import com.ztl.kotlin.utils.Preferences
 import org.greenrobot.eventbus.EventBus
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    protected var isLogin: Boolean by Preferences(Constant.CONST_ISLOGIN_KEY, false)
 
     protected abstract fun layoutRes(): Int
     protected abstract fun initView()

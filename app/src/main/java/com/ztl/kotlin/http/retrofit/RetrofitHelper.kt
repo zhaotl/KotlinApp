@@ -2,6 +2,8 @@ package com.ztl.kotlin.http.retrofit
 
 import com.ztl.kotlin.BuildConfig
 import com.ztl.kotlin.http.api.Apis
+import com.ztl.kotlin.http.interceptor.CookieIntercepter
+import com.ztl.kotlin.http.interceptor.HeaderIntercepter
 import com.ztl.kotlin.utils.HTTPConstant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -39,6 +41,8 @@ object RetrofitHelper {
         val builder = OkHttpClient().newBuilder()
 
         val loggingInterceptor = HttpLoggingInterceptor()
+        val cookieIntercepter = CookieIntercepter()
+        val headerIntercepter = HeaderIntercepter()
         if (BuildConfig.DEBUG) {
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         } else {
@@ -47,6 +51,8 @@ object RetrofitHelper {
 
         builder.run {
             addInterceptor(loggingInterceptor)
+            addInterceptor(cookieIntercepter)
+            addInterceptor(headerIntercepter)
             connectTimeout(HTTPConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             readTimeout(HTTPConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
             writeTimeout(HTTPConstant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)

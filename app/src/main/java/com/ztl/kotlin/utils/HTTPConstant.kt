@@ -6,6 +6,12 @@ object HTTPConstant {
 
     const val BASE_URL = "https://www.wanandroid.com/"
 
+    const val SET_COOKIE_KEY = "set-cookie"
+    const val COLLECTIONS_WEBSITE = "lg/collect"
+    const val UNCOLLECTIONS_WEBSITE = "lg/uncollect"
+    const val ARTICLE_WEBSITE = "article"
+    const val TODO_WEBSITE = "lg/todo"
+
     // 登陆
     const val LOGIN_PATH = "user/login"
 

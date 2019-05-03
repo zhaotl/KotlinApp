@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.main_tool_bar.*
 class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
 
     private var username: String by Preferences(Constant.CONST_USERNAME_KEY, "")
-    private var isLogin: Boolean by Preferences(Constant.CONST_ISLOGIN_KEY, false)
 
     private var nav_username: TextView? = null
     private var fragment_index: Int = Constant.CONST_FRAGMENT_HOME
