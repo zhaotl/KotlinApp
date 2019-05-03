@@ -93,9 +93,9 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
                 false -> {
                     it.text = getString(R.string.title_login)
-                    it.setOnClickListener({
+                    it.setOnClickListener{
                         start<LoginActivity>()
-                    })
+                    }
                 }
             }
 
