@@ -43,8 +43,11 @@ abstract class BaseActivity : AppCompatActivity() {
         App.getRefWatcher(this)?.watch(this)
     }
 
-    inline fun <reified T: Activity> start() {
+    inline fun <reified T: Activity> start(bundle: Bundle? = null) {
         var intent = Intent(this, T::class.java)
+        bundle?.let {
+            intent.putExtras(it)
+        }
         startActivity(intent)
     }
 }

@@ -30,7 +30,7 @@
                 android:paddingRight="@dimen/dp_4"
                 android:paddingBottom="@dimen/dp_2"
                 android:text="@string/article_top"
-                android:textColor="@color/white"
+                android:textColor="@color/red"
                 android:textSize="10sp"
                 android:visibility="gone"/>
 
@@ -61,7 +61,7 @@
                 android:paddingTop="@dimen/dp_2"
                 android:paddingRight="@dimen/dp_4"
                 android:paddingBottom="@dimen/dp_2"
-                android:textColor="@color/white"
+                android:textColor="@color/light_blue"
                 android:textSize="10dp"
                 android:visibility="gone"/>
 

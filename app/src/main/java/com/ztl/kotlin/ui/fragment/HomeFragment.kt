@@ -1,5 +1,7 @@
 package com.ztl.kotlin.ui.fragment
 
+import android.content.Intent
+import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,9 +17,11 @@ import com.ztl.kotlin.mvp.model.bean.Article
 import com.ztl.kotlin.mvp.model.bean.ArticleList
 import com.ztl.kotlin.mvp.model.bean.Banner
 import com.ztl.kotlin.mvp.presenter.HomePresenter
+import com.ztl.kotlin.ui.activity.DetailActivity
 import com.ztl.kotlin.ui.activity.LoginActivity
 import com.ztl.kotlin.ui.activity.MainActivity
 import com.ztl.kotlin.ui.adapter.HomeAdapter
+import com.ztl.kotlin.utils.Constant
 import com.ztl.kotlin.utils.GlideLoader
 import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.widget.decoration.CommonDecoration
@@ -181,6 +185,12 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
             KLogger.d("article url = ${article.link}")
             KLogger.d("article title = ${article.title}")
             KLogger.d("article id = ${article.id}")
+
+            val bundle = Bundle()
+            bundle.putInt(Constant.CONTENT_ID_KEY, article.id)
+            bundle.putString(Constant.CONTENT_URL_KEY, article.link)
+            bundle.putString(Constant.CONTENT_TITLE_KEY, article.title)
+            (activity as MainActivity).start<DetailActivity>(bundle)
         }
     }
 
