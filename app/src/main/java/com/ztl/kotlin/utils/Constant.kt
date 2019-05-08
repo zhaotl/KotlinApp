@@ -10,6 +10,7 @@ object Constant {
     const val CONTENT_URL_KEY = "url"
     const val CONTENT_TITLE_KEY = "title"
     const val CONTENT_ID_KEY = "id"
+    const val CONTENT_FAVORITE_KEY = "isCollect"
 
     const val CONST_FRAGMENT_HOME = 0x1
     const val CONST_FRAGMENT_KNOWLEDGE = 0x2

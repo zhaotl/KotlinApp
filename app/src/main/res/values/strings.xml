@@ -35,5 +35,10 @@
     <string name="article_top">置顶</string>
     <string name="article_new">新</string>
 
-    
+    <!-- Article Detail -->
+    <string name="action_favorite">收藏</string>
+    <string name="action_share">分享</string>
+    <string name="action_browser">浏览器打开</string>
+
+    <string name="share_article_url">%1$s分享【%2$s】：%3$s</string>
 </resources>

@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.widget.TextView
 import com.ztl.kotlin.R
 import com.ztl.kotlin.base.BaseMvpActivity
+import com.ztl.kotlin.event.RefreshHomeEvent
 import com.ztl.kotlin.mvp.contract.MainContract
 import com.ztl.kotlin.mvp.presenter.MainPresenter
 import com.ztl.kotlin.ui.fragment.HomeFragment
@@ -16,6 +17,8 @@ import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.utils.Preferences
 import kotlinx.android.synthetic.main.activity_maintab.*
 import kotlinx.android.synthetic.main.main_tool_bar.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(), MainContract.View {
 
@@ -26,7 +29,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
     private var homeFragment: HomeFragment? = null
 
-    override fun enableEventBus(): Boolean = false
+    override fun enableEventBus(): Boolean = true
 
     override fun createPresenter(): MainContract.Presenter = MainPresenter()
 
@@ -190,4 +193,11 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
                 }
                 true
             }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun refreshHomeEvent(event: RefreshHomeEvent) {
+        if (event.refresh) {
+            homeFragment?.loadData()
+        }
+    }
 }

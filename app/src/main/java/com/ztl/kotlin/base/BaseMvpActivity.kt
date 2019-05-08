@@ -45,9 +45,9 @@ abstract class BaseMvpActivity<in V: IView, P: IPresenter<V>>: BaseActivity(), I
     }
 
     override fun showMessage(msg: String) {
-        runOnUiThread({
+        runOnUiThread{
             tips?.show(msg)
-        })
+        }
     }
 
     override fun showError(errMsg: String) {

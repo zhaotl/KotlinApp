@@ -185,11 +185,13 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
             KLogger.d("article url = ${article.link}")
             KLogger.d("article title = ${article.title}")
             KLogger.d("article id = ${article.id}")
+            KLogger.d("article collect = ${article.collect}")
 
             val bundle = Bundle()
             bundle.putInt(Constant.CONTENT_ID_KEY, article.id)
             bundle.putString(Constant.CONTENT_URL_KEY, article.link)
             bundle.putString(Constant.CONTENT_TITLE_KEY, article.title)
+            bundle.putBoolean(Constant.CONTENT_FAVORITE_KEY, article.collect)
             (activity as MainActivity).start<DetailActivity>(bundle)
         }
     }

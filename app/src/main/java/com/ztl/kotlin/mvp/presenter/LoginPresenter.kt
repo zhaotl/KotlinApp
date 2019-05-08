@@ -19,7 +19,7 @@ class LoginPresenter: BasePresenter<LoginContract.Model, LoginContract.View>(), 
             mView?.onLoginSuccess(it.data)
         }, {
             mView?.onLoginFailed(it)
-        })
+        }, isShowLoading = true)
     }
 
 }
