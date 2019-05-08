@@ -56,4 +56,7 @@ interface Apis {
 
     @GET(value = HTTPConstant.HOME_ARTICLES_LIST)
     fun getHomeArticles(@Path("index") index: Int): Observable<HttpResult<ArticleList>>
+
+    @GET(value = HTTPConstant.KNOWLEDGE_LIST)
+    fun getKnowledgeList(): Observable<HttpResult<List<KnowledgeTree>>>
 }

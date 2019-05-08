@@ -14,6 +14,6 @@ class RegisterPresenter: BasePresenter<RegisterContract.Model, RegisterContract.
             mView?.onRegisterSuccess(it.data)
         }, {
             mView?.showError(it)
-        })
+        }, true)
     }
 }

@@ -1,6 +1,7 @@
 package com.ztl.kotlin.mvp.model.bean
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class HttpResult<T>(
     @Json(name = "data") val data: T
@@ -72,3 +73,24 @@ data class Banner(
     @Json(name = "type") val type: Int,
     @Json(name = "url") val url: String
 )
+
+// 体系
+data class KnowledgeTree(
+    @Json(name = "children") val children: MutableList<Knowledge>,
+    @Json(name = "courseId") val courseId: Int,
+    @Json(name = "id") val id: Int,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: String,
+    @Json(name = "parentChapterId") val parentChapterId: String,
+    @Json(name = "visible") val visible: Int
+): Serializable
+
+data class Knowledge(
+    @Json(name = "children") val children: MutableList<Any>,
+    @Json(name = "courseId") val courseId: Int,
+    @Json(name = "id") val id: Int,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: String,
+    @Json(name = "parentChapterId") val parentChapterId: String,
+    @Json(name = "visible") val visible: Int
+): Serializable

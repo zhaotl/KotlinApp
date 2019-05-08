@@ -39,4 +39,8 @@ object HTTPConstant {
     const val DEL_FAVORITE_ARTICLELIST = "lg/uncollect_originId/{id}/json"
     // 取消收藏（我的收藏）
     const val DEL_FAVORITE_MY_FAVORITES = "lg/uncollect/{id}/json"
+
+    const val KNOWLEDGE_LIST = "tree/json"
+
+    const val KNOWLEDGE_CATAGORY = "article/list/{page}/json"
 }

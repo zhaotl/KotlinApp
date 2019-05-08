@@ -12,6 +12,7 @@ import com.ztl.kotlin.event.RefreshHomeEvent
 import com.ztl.kotlin.mvp.contract.MainContract
 import com.ztl.kotlin.mvp.presenter.MainPresenter
 import com.ztl.kotlin.ui.fragment.HomeFragment
+import com.ztl.kotlin.ui.fragment.KnowledgeListFragment
 import com.ztl.kotlin.utils.Constant
 import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.utils.Preferences
@@ -28,6 +29,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
     private var fragment_index: Int = Constant.CONST_FRAGMENT_HOME
 
     private var homeFragment: HomeFragment? = null
+    private var knowledgeFregment: KnowledgeListFragment? = null
 
     override fun enableEventBus(): Boolean = true
 
@@ -111,6 +113,22 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
                 Constant.CONST_FRAGMENT_HOME -> {
                     homeFragment?.scrollToTop()
                 }
+
+                Constant.CONST_FRAGMENT_KNOWLEDGE -> {
+                    knowledgeFregment?.scrollToTop()
+                }
+
+                Constant.CONST_FRAGMENT_GUIDE -> {
+
+                }
+
+                Constant.CONST_FRAGMENT_SUBSCRIPTION -> {
+
+                }
+
+                Constant.CONST_FRAGMENT_PROJECT -> {
+
+                }
             }
         }
     }
@@ -131,6 +149,18 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
                     }
                 }
             }
+
+            Constant.CONST_FRAGMENT_KNOWLEDGE -> {
+                if (knowledgeFregment == null) {
+                    knowledgeFregment = KnowledgeListFragment()
+                    transation.add(R.id.main_container_layout, knowledgeFregment!!, "knowledge")
+                } else {
+                    knowledgeFregment?.let {
+                        transation.show(it)
+                    }
+                }
+
+            }
         }
 
         transation.commit()
@@ -145,23 +175,27 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             return@OnNavigationItemSelectedListener when (item.itemId) {
                 R.id.item_home -> {
+                    showFragment(Constant.CONST_FRAGMENT_HOME)
                     true
                 }
 
                 R.id.item_knowledge -> {
+                    showFragment(Constant.CONST_FRAGMENT_KNOWLEDGE)
                     true
                 }
 
                 R.id.item_subscription -> {
-
+                    showFragment(Constant.CONST_FRAGMENT_SUBSCRIPTION)
                     true
                 }
 
                 R.id.item_guide -> {
+                    showFragment(Constant.CONST_FRAGMENT_GUIDE)
                     true
                 }
 
                 R.id.item_project -> {
+                    showFragment(Constant.CONST_FRAGMENT_PROJECT)
                     true
                 }
 

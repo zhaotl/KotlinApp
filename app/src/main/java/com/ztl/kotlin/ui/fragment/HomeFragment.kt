@@ -27,11 +27,11 @@ import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.widget.decoration.CommonDecoration
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.banner_item.*
-import kotlinx.android.synthetic.main.fragment_home_layout.*
+import kotlinx.android.synthetic.main.fragment_recyclerview_layout.*
 
 class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(), HomeContract.View {
 
-    private var articles = mutableListOf<Article>()
+    private val articles = mutableListOf<Article>()
     private lateinit var banners: ArrayList<Banner>
     private var bannerView: View? = null
     private var isRefresh = true
@@ -52,7 +52,7 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
 
     override fun createPresenter(): HomeContract.Presenter = HomePresenter()
 
-    override fun layoutRes(): Int = R.layout.fragment_home_layout
+    override fun layoutRes(): Int = R.layout.fragment_recyclerview_layout
 
     override fun loadData() {
         mPresenter?.getHomeData()

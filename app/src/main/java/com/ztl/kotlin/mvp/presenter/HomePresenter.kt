@@ -43,7 +43,7 @@ class HomePresenter: FavoritePresenter<HomeContract.Model, HomeContract.View>(),
             })
             .result(mMode, mView, {
                 mView?.showArticles(it.data)
-            })
+            }, isShowLoading = true)
 
     }
 
