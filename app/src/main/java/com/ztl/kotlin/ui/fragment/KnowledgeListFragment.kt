@@ -11,9 +11,11 @@ import com.ztl.kotlin.base.BaseMvpFragment
 import com.ztl.kotlin.mvp.contract.KnowledgeListContract
 import com.ztl.kotlin.mvp.model.bean.KnowledgeTree
 import com.ztl.kotlin.mvp.presenter.KnowledgeListPresenter
+import com.ztl.kotlin.ui.activity.DetailActivity
 import com.ztl.kotlin.ui.activity.MainActivity
 import com.ztl.kotlin.ui.adapter.KnowledgeListAdapter
 import com.ztl.kotlin.utils.Constant
+import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.widget.decoration.CommonDecoration
 import kotlinx.android.synthetic.main.fragment_recyclerview_layout.*
 
@@ -25,7 +27,7 @@ class KnowledgeListFragment : BaseMvpFragment<KnowledgeListContract.View, Knowle
     }
 
     private val knowledgeListAdapter by lazy {
-        KnowledgeListAdapter(activity, knowledges)
+        KnowledgeListAdapter(knowledges)
     }
 
     override fun createPresenter(): KnowledgeListContract.Presenter = KnowledgeListPresenter()
@@ -39,8 +41,13 @@ class KnowledgeListFragment : BaseMvpFragment<KnowledgeListContract.View, Knowle
     override fun initView(view: View) {
         super.initView(view)
 
-        fragment_swipe_layout?.setOnRefreshListener {
-            mPresenter?.requestKnowledges()
+        fragment_swipe_layout?.run{
+            setOnRefreshListener {
+                KLogger.d("start refresh ~~~~~~.")
+                mPresenter?.requestKnowledges()
+            }
+
+            isEnabled = false
         }
 
         fragment_recyclerview.run {
@@ -71,6 +78,7 @@ class KnowledgeListFragment : BaseMvpFragment<KnowledgeListContract.View, Knowle
     }
 
     override fun showKnowledges(list: List<KnowledgeTree>) {
+        KLogger.d("showKnowledges")
         knowledgeListAdapter.replaceData(list)
 
     }
@@ -81,7 +89,7 @@ class KnowledgeListFragment : BaseMvpFragment<KnowledgeListContract.View, Knowle
             val knowledge = knowledges[position]
             val bundle = Bundle()
             bundle.putSerializable(Constant.CONST_KNOWLEDGE_DATA, knowledge)
-//            (activity as MainActivity).start<>(bundle)
+//            (activity as MainActivity).start<DetailActivity>(bundle)
         }
     }
 }

@@ -1,13 +1,11 @@
 package com.ztl.kotlin.ui.adapter
 
-import android.content.Context
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.ztl.kotlin.R
-import com.ztl.kotlin.mvp.contract.KnowledgeListContract
 import com.ztl.kotlin.mvp.model.bean.KnowledgeTree
 
-class KnowledgeListAdapter(private val context: Context?, items: MutableList<KnowledgeTree>)
+class KnowledgeListAdapter(items: MutableList<KnowledgeTree>)
     : BaseQuickAdapter<KnowledgeTree, BaseViewHolder>(R.layout.knowledge_list_item, items) {
 
     override fun convert(helper: BaseViewHolder?, item: KnowledgeTree?) {
