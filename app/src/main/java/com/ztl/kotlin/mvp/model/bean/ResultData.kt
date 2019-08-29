@@ -94,3 +94,14 @@ data class Knowledge(
     @Json(name = "parentChapterId") val parentChapterId: String,
     @Json(name = "visible") val visible: Int
 ): Serializable
+
+data class SharedArticles(
+    @Json(name = "children") val children: MutableList<String>,
+    @Json(name = "courseId") val courseId: Int,
+    @Json(name = "id") val id: Int,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: String,
+    @Json(name = "parentChapterId") val parentChapterId: String,
+    @Json(name = "userControlSetTop") val userControlSetTop: String,
+    @Json(name = "visible") val visible: Int
+)
