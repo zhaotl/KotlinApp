@@ -59,4 +59,8 @@ interface Apis {
 
     @GET(value = HTTPConstant.KNOWLEDGE_LIST)
     fun getKnowledgeList(): Observable<HttpResult<List<KnowledgeTree>>>
+
+    // 知识体系下文章
+    @GET(value = HTTPConstant.KNOWLEDGE_CATAGORY)
+    fun getKnoledgeCategory(@Path("page") page: Int, @Query("cid") cid: Int): Observable<HttpResult<ArticleList>>
 }
