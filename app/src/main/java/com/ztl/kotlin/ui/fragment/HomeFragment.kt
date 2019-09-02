@@ -131,6 +131,10 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
                     addData(it)
                 }
 
+                KLogger.d("it size = ${it.size}")
+                KLogger.d("articles size = ${articles.size}")
+                KLogger.d("adapter size = ${homeAdapter.data.size}")
+
                 val size = it.size
                 if (size < articles.size) {
                     loadMoreEnd(isRefresh)
@@ -153,10 +157,15 @@ class HomeFragment: BaseMvpFragment<HomeContract.View, HomeContract.Presenter>()
     }
 
     override fun onAddFavorite(success: Boolean) {
+        if (success) {
+            showMessage("收藏成功")
+        }
     }
 
     override fun onDelFavorite(success: Boolean) {
-
+        if (success) {
+            showMessage("取消收藏")
+        }
     }
 
     override fun hideLoading() {

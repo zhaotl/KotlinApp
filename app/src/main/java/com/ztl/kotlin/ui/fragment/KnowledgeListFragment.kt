@@ -12,6 +12,7 @@ import com.ztl.kotlin.mvp.contract.KnowledgeListContract
 import com.ztl.kotlin.mvp.model.bean.KnowledgeTree
 import com.ztl.kotlin.mvp.presenter.KnowledgeListPresenter
 import com.ztl.kotlin.ui.activity.DetailActivity
+import com.ztl.kotlin.ui.activity.KnowledgeActivity
 import com.ztl.kotlin.ui.activity.MainActivity
 import com.ztl.kotlin.ui.adapter.KnowledgeListAdapter
 import com.ztl.kotlin.utils.Constant
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_recyclerview_layout.*
 
 class KnowledgeListFragment : BaseMvpFragment<KnowledgeListContract.View, KnowledgeListContract.Presenter>(), KnowledgeListContract.View {
 
+    private var isRefresh = false
     private val knowledges: MutableList<KnowledgeTree> = mutableListOf()
     private val linearLayoutManager: LinearLayoutManager by lazy {
         LinearLayoutManager(activity)
@@ -44,10 +46,11 @@ class KnowledgeListFragment : BaseMvpFragment<KnowledgeListContract.View, Knowle
         fragment_swipe_layout?.run{
             setOnRefreshListener {
                 KLogger.d("start refresh ~~~~~~.")
+                isRefresh = true
                 mPresenter?.requestKnowledges()
             }
 
-            isEnabled = false
+//            isEnabled = false
         }
 
         fragment_recyclerview.run {
@@ -89,7 +92,12 @@ class KnowledgeListFragment : BaseMvpFragment<KnowledgeListContract.View, Knowle
             val knowledge = knowledges[position]
             val bundle = Bundle()
             bundle.putSerializable(Constant.CONST_KNOWLEDGE_DATA, knowledge)
-//            (activity as MainActivity).start<DetailActivity>(bundle)
+            (activity as MainActivity).start<KnowledgeActivity>(bundle)
         }
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+        fragment_swipe_layout?.isRefreshing = false
     }
 }

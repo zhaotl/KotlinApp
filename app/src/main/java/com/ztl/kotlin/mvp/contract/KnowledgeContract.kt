@@ -16,9 +16,10 @@ class KnowledgeContract {
 
     interface View: FavoriteContract.View {
         fun setSharedArticleList(articles: ArticleList)
+        fun scrollToTop()
     }
 
-    interface Presenter: IPresenter<View> {
+    interface Presenter: FavoriteContract.Presenter<View> {
         fun getSharedArticleList(page: Int, cid: Int)
     }
 }

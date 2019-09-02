@@ -47,6 +47,9 @@ abstract class BaseMvpFragment<in V: IView, P: IPresenter<V>>: BaseFragment(), I
     }
 
     override fun showMessage(msg: String) {
+        activity?.runOnUiThread {
+            tips?.show(msg)
+        }
     }
 
     override fun showError(errMsg: String) {

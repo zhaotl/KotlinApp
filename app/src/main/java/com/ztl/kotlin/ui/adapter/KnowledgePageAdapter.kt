@@ -5,11 +5,12 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
 import android.text.Html
+import com.ztl.kotlin.mvp.model.bean.Knowledge
 import com.ztl.kotlin.mvp.model.bean.SharedArticles
 import com.ztl.kotlin.ui.fragment.KnowledgeFragment
 
-class SharedArticlesAdapter(private val datas: MutableList<SharedArticles>
-    , fragment: FragmentManager?): FragmentStatePagerAdapter(fragment) {
+class KnowledgePageAdapter(private val datas: MutableList<Knowledge>
+                           , fragment: FragmentManager?): FragmentStatePagerAdapter(fragment) {
 
     private val fms = mutableListOf<Fragment>()
 

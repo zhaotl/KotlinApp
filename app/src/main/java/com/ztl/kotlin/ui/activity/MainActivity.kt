@@ -13,6 +13,7 @@ import com.ztl.kotlin.mvp.contract.MainContract
 import com.ztl.kotlin.mvp.presenter.MainPresenter
 import com.ztl.kotlin.ui.fragment.HomeFragment
 import com.ztl.kotlin.ui.fragment.KnowledgeListFragment
+import com.ztl.kotlin.ui.fragment.SharedArticlesFragment
 import com.ztl.kotlin.utils.Constant
 import com.ztl.kotlin.utils.KLogger
 import com.ztl.kotlin.utils.Preferences
@@ -29,7 +30,8 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
     private var fragment_index: Int = Constant.CONST_FRAGMENT_HOME
 
     private var homeFragment: HomeFragment? = null
-    private var knowledgeFregment: KnowledgeListFragment? = null
+    private var knowledgelistFragment: KnowledgeListFragment? = null
+    private var substribeFragment: SharedArticlesFragment? = null
 
     override fun enableEventBus(): Boolean = true
 
@@ -115,7 +117,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
                 }
 
                 Constant.CONST_FRAGMENT_KNOWLEDGE -> {
-                    knowledgeFregment?.scrollToTop()
+                    knowledgelistFragment?.scrollToTop()
                 }
 
                 Constant.CONST_FRAGMENT_GUIDE -> {
@@ -138,28 +140,42 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
         hideFragment(transation)
         fragment_index = index
 
+        KLogger.d("index = $index")
         when(index) {
             Constant.CONST_FRAGMENT_HOME -> {
                 if (homeFragment == null) {
                     homeFragment = HomeFragment()
                     transation.add(R.id.main_container_layout, homeFragment!!, "home")
                 } else {
+                    KLogger.d("show home fragment 1.")
                     homeFragment?.let {
+                        KLogger.d("show home fragment 2.")
                         transation.show(it)
                     }
                 }
             }
 
             Constant.CONST_FRAGMENT_KNOWLEDGE -> {
-                if (knowledgeFregment == null) {
-                    knowledgeFregment = KnowledgeListFragment()
-                    transation.add(R.id.main_container_layout, knowledgeFregment!!, "knowledge")
+                if (knowledgelistFragment == null) {
+                    knowledgelistFragment = KnowledgeListFragment()
+                    transation.add(R.id.main_container_layout, knowledgelistFragment!!, "knowledge")
                 } else {
-                    knowledgeFregment?.let {
+                    knowledgelistFragment?.let {
                         transation.show(it)
                     }
                 }
 
+            }
+
+            Constant.CONST_FRAGMENT_SUBSCRIPTION -> {
+                if (substribeFragment == null) {
+                    substribeFragment = SharedArticlesFragment.getInstance()
+                    transation.add(R.id.main_container_layout, substribeFragment!!, "subscribe")
+                } else {
+                    substribeFragment?.let {
+                        transation.show(it)
+                    }
+                }
             }
         }
 
@@ -168,7 +184,8 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
 
     private fun hideFragment(transation: FragmentTransaction) {
         homeFragment?.let { transation.hide(it) }
-
+        knowledgelistFragment?.let { transation.hide(it) }
+        substribeFragment?.let { transation.hide(it) }
     }
 
     private val bottomNaviSelectedListner =
