@@ -63,4 +63,8 @@ interface Apis {
     // 知识体系下文章
     @GET(value = HTTPConstant.KNOWLEDGE_CATAGORY)
     fun getKnoledgeCategory(@Path("page") page: Int, @Query("cid") cid: Int): Observable<HttpResult<ArticleList>>
+
+    // 公众号文章
+    @GET(value = HTTPConstant.SUBCRIBE_ARTICLES)
+    fun getSubscribeArticles(): Observable<HttpResult<MutableList<SharedArticles>>>
 }

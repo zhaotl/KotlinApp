@@ -43,4 +43,6 @@ object HTTPConstant {
     const val KNOWLEDGE_LIST = "tree/json"
 
     const val KNOWLEDGE_CATAGORY = "article/list/{page}/json"
+
+    const val SUBCRIBE_ARTICLES = "wxarticle/chapters/json"
 }
