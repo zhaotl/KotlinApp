@@ -14,11 +14,12 @@ object GlideLoader {
         context ?: return
 
         imageView?.apply {
-            Glide.with(context).clear(imageView)
+            Glide.with(context!!).clear(imageView)
             val options = RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .placeholder(R.drawable.bg_placeholder)
-            Glide.with(context).load(url).transition(DrawableTransitionOptions().crossFade())
+            KLogger.d("url = $url")
+            Glide.with(context!!).load(url).transition(DrawableTransitionOptions().crossFade())
                 .apply(options)
                 .into(imageView)
         }

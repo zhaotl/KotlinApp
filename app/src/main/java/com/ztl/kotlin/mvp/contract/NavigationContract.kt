@@ -4,21 +4,20 @@ import com.ztl.kotlin.base.mvp.IMode
 import com.ztl.kotlin.base.mvp.IPresenter
 import com.ztl.kotlin.base.mvp.IView
 import com.ztl.kotlin.mvp.model.bean.HttpResult
-import com.ztl.kotlin.mvp.model.bean.SharedArticles
+import com.ztl.kotlin.mvp.model.bean.NaviData
 import io.reactivex.Observable
 
-interface SharedArticlesContract {
+interface NavigationContract {
 
     interface Model: IMode {
-        fun getArticles(): Observable<HttpResult<MutableList<SharedArticles>>>
+        fun getNavis(): Observable<HttpResult<MutableList<NaviData>>>
     }
 
     interface View: IView {
-        fun scroll2Top()
-        fun showSharedArticles(articles: MutableList<SharedArticles>)
+        fun setNaviView(navis: MutableList<NaviData>)
     }
 
     interface Presenter: IPresenter<View> {
-        fun getSharedArticles()
+        fun getNavis()
     }
 }

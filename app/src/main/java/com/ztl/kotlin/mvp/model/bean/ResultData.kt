@@ -105,3 +105,22 @@ data class SharedArticles(
     @Json(name = "userControlSetTop") val userControlSetTop: Boolean,
     @Json(name = "visible") val visible: Int
 )
+
+// 导航
+data class NaviData(
+    @Json(name = "articles") val articles: MutableList<Article>,
+    @Json(name = "cid") val cid: Int,
+    @Json(name = "name") val name: String
+)
+
+// 项目
+data class ProjectData(
+    @Json(name = "children") val children: MutableList<String>,
+    @Json(name = "courseId") val courseId: Int,
+    @Json(name = "id") val id: Int,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: Int,
+    @Json(name = "parentChapterId") val parentChapterId: Int,
+    @Json(name = "userControlSetTop") val userControlSetTop: Boolean,
+    @Json(name = "visible") val visible: Int
+)

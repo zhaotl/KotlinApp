@@ -9,8 +9,10 @@ import com.ztl.kotlin.mvp.model.bean.Knowledge
 import com.ztl.kotlin.mvp.model.bean.SharedArticles
 import com.ztl.kotlin.ui.fragment.KnowledgeFragment
 
-class KnowledgePageAdapter(private val datas: MutableList<Knowledge>
-                           , fragment: FragmentManager?): FragmentStatePagerAdapter(fragment) {
+class KnowledgePageAdapter(
+    private val datas: MutableList<Knowledge>
+    , fragment: FragmentManager?
+) : FragmentStatePagerAdapter(fragment) {
 
     private val fms = mutableListOf<Fragment>()
 

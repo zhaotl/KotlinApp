@@ -45,4 +45,10 @@ object HTTPConstant {
     const val KNOWLEDGE_CATAGORY = "article/list/{page}/json"
 
     const val SUBCRIBE_ARTICLES = "wxarticle/chapters/json"
+
+    const val NAVIGATION_URL = "navi/json"
+
+    const val PROJECT_URL = "project/tree/json"
+
+    const val PROJECT_LIST_URL = "project/list/{page}/json"
 }

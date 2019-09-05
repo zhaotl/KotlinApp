@@ -13,6 +13,7 @@ import com.ztl.kotlin.mvp.contract.MainContract
 import com.ztl.kotlin.mvp.presenter.MainPresenter
 import com.ztl.kotlin.ui.fragment.HomeFragment
 import com.ztl.kotlin.ui.fragment.KnowledgeListFragment
+import com.ztl.kotlin.ui.fragment.ProjectFragment
 import com.ztl.kotlin.ui.fragment.SharedArticlesFragment
 import com.ztl.kotlin.utils.Constant
 import com.ztl.kotlin.utils.KLogger
@@ -32,6 +33,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
     private var homeFragment: HomeFragment? = null
     private var knowledgelistFragment: KnowledgeListFragment? = null
     private var substribeFragment: SharedArticlesFragment? = null
+    private var projectFragment: ProjectFragment? = null
 
     override fun enableEventBus(): Boolean = true
 
@@ -125,11 +127,11 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
                 }
 
                 Constant.CONST_FRAGMENT_SUBSCRIPTION -> {
-
+                    substribeFragment?.scroll2Top()
                 }
 
                 Constant.CONST_FRAGMENT_PROJECT -> {
-
+                    projectFragment?.scroll2Top()
                 }
             }
         }
@@ -177,6 +179,17 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
                     }
                 }
             }
+
+            Constant.CONST_FRAGMENT_PROJECT -> {
+                if (projectFragment == null) {
+                    projectFragment = ProjectFragment.getInstance()
+                    transation.add(R.id.main_container_layout, projectFragment!!, "project")
+                } else {
+                    projectFragment?.let {
+                        transation.show(it)
+                    }
+                }
+            }
         }
 
         transation.commit()
@@ -186,6 +199,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
         homeFragment?.let { transation.hide(it) }
         knowledgelistFragment?.let { transation.hide(it) }
         substribeFragment?.let { transation.hide(it) }
+        projectFragment?.let { transation.hide(it) }
     }
 
     private val bottomNaviSelectedListner =

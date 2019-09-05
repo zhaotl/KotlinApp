@@ -8,7 +8,7 @@ import com.ztl.kotlin.mvp.model.bean.ArticleList
 import com.ztl.kotlin.mvp.model.bean.HttpResult
 import io.reactivex.Observable
 
-class KnowledgeContract {
+interface KnowledgeContract {
 
     interface Model: FavoriteContract.Model {
         fun getSharedArticleList(page: Int, cid: Int): Observable<HttpResult<ArticleList>>

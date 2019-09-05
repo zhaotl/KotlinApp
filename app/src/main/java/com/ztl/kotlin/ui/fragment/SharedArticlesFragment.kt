@@ -9,6 +9,7 @@ import com.ztl.kotlin.mvp.model.bean.SharedArticles
 import com.ztl.kotlin.mvp.presenter.SharedArticlesPresenter
 import com.ztl.kotlin.ui.adapter.SharedArticlesAdapter
 import com.ztl.kotlin.utils.KLogger
+import kotlinx.android.synthetic.main.fragment_recyclerview_layout.*
 import kotlinx.android.synthetic.main.shared_articles.*
 
 class SharedArticlesFragment: BaseMvpFragment<SharedArticlesContract.View, SharedArticlesContract.Presenter>(), SharedArticlesContract.View {
@@ -41,6 +42,15 @@ class SharedArticlesFragment: BaseMvpFragment<SharedArticlesContract.View, Share
             addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
             addOnTabSelectedListener(tabSelectedListener)
         }
+    }
+
+    override fun scroll2Top() {
+        if (viewPageAdapter.count == 0) {
+            return
+        }
+
+        val fragment = viewPageAdapter.getItem(viewPager.currentItem)
+        (fragment as KnowledgeFragment).scrollToTop()
     }
 
     override fun showSharedArticles(articles: MutableList<SharedArticles>) {

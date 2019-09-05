@@ -67,4 +67,16 @@ interface Apis {
     // 公众号文章
     @GET(value = HTTPConstant.SUBCRIBE_ARTICLES)
     fun getSubscribeArticles(): Observable<HttpResult<MutableList<SharedArticles>>>
+
+    // 导航页
+    @GET(value = HTTPConstant.NAVIGATION_URL)
+    fun getNavis(): Observable<HttpResult<MutableList<NaviData>>>
+
+    // 项目
+    @GET(value = HTTPConstant.PROJECT_URL)
+    fun getProjects(): Observable<HttpResult<MutableList<ProjectData>>>
+
+    // 项目列表
+    @GET(value = HTTPConstant.PROJECT_LIST_URL)
+    fun getProjectList(@Path("page") page: Int, @Query("cid") cid: Int): Observable<HttpResult<ArticleList>>
 }
