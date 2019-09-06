@@ -12,10 +12,10 @@ import com.ztl.kotlin.mvp.model.bean.Article
 import com.ztl.kotlin.mvp.model.bean.ArticleList
 import com.ztl.kotlin.mvp.presenter.KnowledgePresenter
 import com.ztl.kotlin.ui.activity.DetailActivity
+import com.ztl.kotlin.ui.activity.KnowledgeActivity
 import com.ztl.kotlin.ui.activity.LoginActivity
 import com.ztl.kotlin.ui.activity.MainActivity
 import com.ztl.kotlin.ui.adapter.KnowledgeAdapter
-import com.ztl.kotlin.ui.adapter.KnowledgeListAdapter
 import com.ztl.kotlin.utils.Constant
 import com.ztl.kotlin.widget.decoration.CommonDecoration
 import kotlinx.android.synthetic.main.fragment_recyclerview_layout.*
@@ -156,7 +156,7 @@ class KnowledgeFragment : BaseMvpFragment<KnowledgeContract.View, KnowledgeContr
             bundle.putInt(Constant.CONTENT_ID_KEY, article.id)
             bundle.putBoolean(Constant.CONTENT_FAVORITE_KEY, article.collect)
 
-            (activity as MainActivity).start<DetailActivity>(bundle)
+            (activity as KnowledgeActivity).start<DetailActivity>(bundle)
         }
     }
 
@@ -166,7 +166,7 @@ class KnowledgeFragment : BaseMvpFragment<KnowledgeContract.View, KnowledgeContr
             val article = articles[position]
 
             when(view.id) {
-                R.id.fragment_iv_like -> {
+                R.id.article_favorite -> {
                     if (isLogin) {
                         val collect = article.collect
                         article.collect = !collect
